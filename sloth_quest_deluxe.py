@@ -8,28 +8,37 @@ print("Available commands: ")
 print("N - go north, S- go south, E - go east, W - go west, X - exit game")
 #initialize game variable
 game = 1
+#create restartgame function to reset all game variables
+def restartgame():
 #Create goal and hazard coordinate
-xHaz = 1
-yHaz = 1
-yGoal = 2
-xGoal = 2
+ global xHaz
+ xHaz = (random.randint(-7,7))
+ global yHaz
+ yHaz = (random.randint(-7,7))
+ global yGoal
+ yGoal = (random.randint(-7,7))
+ global xGoal
+ xGoal = (random.randint(-7,7))
 #check to see if either goal or hazard is at 0,0 or have same position
-if (xGoal == 0 and yGoal == 0):
- xGoal = (random.randint(-7,7))
- yGoal = (random.randint(-7,7))
-
-if (xHaz == 0 and yHaz == 0):
- xHaz = (random.randint(-7,7))
- yHaz = (random.randint(-7,7))
-if (xGoal == xHaz and yGoal == yHaz):
- xGoal = (random.randint(-7,7))
- yGoal = (random.randint(-7,7))
- xHaz = (random.randint(-7,7))
- yHaz = (random.randint(-7,7))
+ if (xGoal == 0 and yGoal == 0):
+  xGoal = (random.randint(-7,7))
+  yGoal = (random.randint(-7,7))
+ if (xHaz == 0 and yHaz == 0):
+  xHaz = (random.randint(-7,7))
+  yHaz = (random.randint(-7,7))
+ if (xGoal == xHaz and yGoal == yHaz):
+  xGoal = (random.randint(-7,7))
+  yGoal = (random.randint(-7,7))
+  xHaz = (random.randint(-7,7))
+  yHaz = (random.randint(-7,7))
 #initialize user's coordinates and movement counter
-userX = 0
-userY = 0
-movement = 0
+ global userX 
+ userX = 0
+ global userY 
+ userY = 0
+ global movement 
+ movement = 0
+restartgame()
 print("Welcome to Sloth Quest!")
 print("-----------------------")
 print("")
@@ -58,6 +67,8 @@ while game == 1:
      movement += 1
      userX -= 1
      print(f"Moving west to {userX}, {userY} [moves taken: {movement}]")
+    elif direction == "X":
+      break
     else: 
        print("Learn to read.")
     #Check player distance to goal/hazard and print message
@@ -67,12 +78,15 @@ while game == 1:
        print("You don't feel too good.")
     if (userX == xGoal and userY == yGoal):
        print("You reached Slothtopia!")
-       game = int(input("Play again? Type 1 for yes, anything else for no."))
-       if (game == 1):
-          restartgame()
+       game = int(input("Play again? Type 1 for yes, 2 for no."))
+       if game == 1:
+         restartgame()
+         print("You're currently at position (0,0) in the world.")
     if (userX == xHaz and userY == yHaz):
        print("You've been captured by anti-sloth protestors!.")
-       game = int(input("Play again? Type 1 for yes, anything else for no."))
-       if (game == 1):
+       game = int(input("Play again? Type 1 for yes, 2 for no."))
+       if game == 1:
          restartgame()
+         print("You're currently at position (0,0) in the world.")
+      
 
