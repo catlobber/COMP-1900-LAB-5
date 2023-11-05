@@ -37,12 +37,13 @@ else:
                  c = c + str(digitscompressed) + "0"
                  digitscompressed = 1
                  index += 1
-                
              else: 
                  c = c + "0"
                  index += 1
-  
-print(c)
+
+print(f"Compressed Result: {c} (length = {len(c)})")
+print(f"Original Data: {string} (length = {len(string)})")
+print(f"The compression saved {(len(string) - len(c)) / len(string):.1f}% of the original data's length.")
                  
             
     
